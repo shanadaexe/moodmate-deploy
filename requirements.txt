@@ -1,7 +1,11 @@
+tensorflow
+keras
+pandas
+cv2
 fastapi
 uvicorn
 pydantic
 pickle5
 scikit-learn
 numpy
-tensorflow
+
