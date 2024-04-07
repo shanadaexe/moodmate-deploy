@@ -1,7 +1,6 @@
 tensorflow
 keras
 pandas
-cv2
 fastapi
 uvicorn
 pydantic
