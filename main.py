@@ -22,6 +22,10 @@ app.add_middleware(
 
 # folder_path = '/Users/isurudissanayake/DataspellProjects/FYP_Implementation/aunite/src/CaptureImages'
 
+@app.get("/")
+async def read_root():
+    return {"message": "Welcome to Aunite!"}
+
 @app.get("/predictASD")
 async def predict_asd(filepath: str):
     global image_path
