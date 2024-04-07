@@ -26,33 +26,6 @@ app.add_middleware(
 async def read_root():
     return {"message": "Welcome to Aunite!"}
 
-@app.get("/predictASD")
-async def predict_asd(filepath: str):
-    global image_path
-
-    try:
-        print(f"Filepath: {filepath}")
-
-        # input_file_path = '/Users/isurudissanayake/DataspellProjects/FYP_Implementation/aunite/src/CaptureImages/' + filepath
-        input_file_path = filepath
-        image_path = input_file_path
-
-        result = predict_ASD(input_file_path)
-
-
-        print(f"Result: {result}")
-        rounded_result = round(result, 2)
-        if rounded_result > 0.5:
-            return JSONResponse(
-                content={"message": "Prediction successful", "prediction": float(rounded_result), "isASD": True})
-        else:
-            return JSONResponse(
-                content={"message": "Prediction successful", "prediction": float(1 - rounded_result), "isASD": False})
-        # return JSONResponse(content={"message": "Prediction successful", "prediction": float(round(rounded_result, 2))})
-    except Exception as e:
-        return JSONResponse(content={"error": f"Failed to predict ASD: {str(e)}"})
-
-
 @app.get("/predictEmotoin")
 async def predict_Emotoin(filepath: str):
     try:
@@ -70,6 +43,35 @@ async def predict_Emotoin(filepath: str):
         return JSONResponse(content={"message": "Emotion prediction successful", "emotion": emotion, "probability": float(probability)})
     except Exception as e:
         return JSONResponse(content={"error": f"Failed to predict Emotion: {str(e)}"})
+
+
+# @app.get("/predictASD")
+# async def predict_asd(filepath: str):
+#     global image_path
+#
+#     try:
+#         print(f"Filepath: {filepath}")
+#
+#         # input_file_path = '/Users/isurudissanayake/DataspellProjects/FYP_Implementation/aunite/src/CaptureImages/' + filepath
+#         input_file_path = filepath
+#         image_path = input_file_path
+#
+#         result = predict_ASD(input_file_path)
+#
+#
+#         print(f"Result: {result}")
+#         rounded_result = round(result, 2)
+#         if rounded_result > 0.5:
+#             return JSONResponse(
+#                 content={"message": "Prediction successful", "prediction": float(rounded_result), "isASD": True})
+#         else:
+#             return JSONResponse(
+#                 content={"message": "Prediction successful", "prediction": float(1 - rounded_result), "isASD": False})
+#         # return JSONResponse(content={"message": "Prediction successful", "prediction": float(round(rounded_result, 2))})
+#     except Exception as e:
+#         return JSONResponse(content={"error": f"Failed to predict ASD: {str(e)}"})
+
+
 
 
 
